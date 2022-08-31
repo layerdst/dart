@@ -95,5 +95,58 @@ print('${a+b} is Fifteen'); //십오 is Fifteen
 var _name = "이름"; //private 접근제한
 ```
 
+## 생성자
+- 자바와 생성자를 만들수 있으나, 다양한 형태로 코드를 작성할 수 있다.
+```java
+class Bicycle{
+	int cadence;
+	int speed;
+	int gear;
+}
+
+
+
+Bicycle(this.cadence, this.speed, this.gear)
+```
+- 생성자 기본형
+```java
+Bicycle(int cadence, int speed, int gear)
+	: this.cadence = cadence,
+	this.speed = speed,
+	this.gear = gear;
+```
+- 생성자 축약형
+```java
+Bicycle(this.cadence, this.speed, this.gear);
+```
+- 생성자 오버로딩
+	- named parameter 를 활용한 유연한 생성자를 만들 수 있다. 이는 자바의 생성자 오버로딩과 비슷하다.
+```java
+Bicycle(this.cadence, {this.speed=0, this.gear=0});
+// cadence 필수 요소, speed, gear 는 선택요소
+Bicycle(1,speed:3);
+Bicycle(1,gear:4)
+
+
+Bicycle({this.cadence=0, this.speed=0, this.gear=0})
+// 3가지 전부 선택요소
+Bicycle(cadence:1,speed:3);
+Bicycle(speed:1,gear:3);
+Bicycle(cadence:1,speed:3,gear:3);
+
+Bicycle({this.cadence=0, this.speed=0, this.gear=0})
+// 3가지 전부 선택요소
+Bicycle(cadence:1,speed:3);
+Bicycle(speed:1,gear:3);
+Bicycle(cadence:1,speed:3,gear:3);
+```
+- required 를 선언하여 named parameter option 을 필수로 작성해야 하는 생성자를 만들수 있다.
+```java
+Bicycle({this.cadence=0, required this.speed, this.gear=0})
+Bicycle(cadence:1,speed:3,gear:3); // speed 는 필수 요소
+```
+
+- 생성자 오버로딩의 구현은 다음과 같이 작성이 가능하다.
+
 ### 메소드 
 - 일반적인 언어들과 유사하나, 자바스크립트의 함수인 1급 객체의 쓰임과 유사하다
