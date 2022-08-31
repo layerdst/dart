@@ -146,7 +146,5 @@ Bicycle({this.cadence=0, required this.speed, this.gear=0})
 Bicycle(cadence:1,speed:3,gear:3); // speed 는 필수 요소
 ```
 
-- 생성자 오버로딩의 구현은 다음과 같이 작성이 가능하다.
-
 ### 메소드 
 - 일반적인 언어들과 유사하나, 자바스크립트의 함수인 1급 객체의 쓰임과 유사하다
