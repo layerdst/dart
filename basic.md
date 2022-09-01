@@ -145,6 +145,97 @@ Bicycle(cadence:1,speed:3,gear:3);
 Bicycle({this.cadence=0, required this.speed, this.gear=0})
 Bicycle(cadence:1,speed:3,gear:3); // speed 는 필수 요소
 ```
+### Getter 와 Setter
+- Java 에서는 필드(속성)변수들은 접근제한자와 관계없이 Getter 와 Setter 메소드를 임의르 만들어 사용할 수 있다.
+- Dart 에서는 private 로 선언된, 즉 변수 앞에 \_\ 가 붙여진 속성들에 한하여 Getter 와 Setter 메서드로의 접근을 허용한다.
+```java
+int _speed=0;
 
-### 메소드 
-- 일반적인 언어들과 유사하나, 자바스크립트의 함수인 1급 객체의 쓰임과 유사하다
+int get speed = _speed;
+set speed(int speed) => _speed = speed;
+
+```
+
+
+## 메소드 오버라이딩
+-------------
+- Dart 에서는  상속이나 implement 했을때 메소드를 오버라이딩 하는 어노테이션은 @override 로 표기한다.
+```java
+@override
+void speedUp(int i){
+	....
+}
+```
+
+### List 선언과 메소드
+- Dart 에서 List 선언은 [] 으로 하며 메소드의 기능들은 다음과 같다
+```java
+List<String> tempList = List<String>(3);
+List<String> tempList1 = ['a', 'b','c'];
+
+print(tempList1.first); //a
+print(tempList1.isEmpty); //false
+print(tempList1.isNotEmpty); //true
+print(tempList1.length); //3
+print(tempList1.last); //c
+print(tempList1.reversed); //(c,b,a)
+tempList1.add('g');
+tempList1.addAll(['e','e'])
+
+```
+
+### List 탐색
+
+```
+List memberList = [
+	{
+	'id' : 0,
+	'name' : 'a'
+	},
+	
+	{
+	'id' : 1,
+	'name' : 'b'
+	},
+
+	{
+	'id' : 1,
+	'name' : 'c'
+	},
+	
+]
+
+
+var item = memberList.firstWhere((item) =>item['id'] ==1 );
+var index = memberList.indexWhere((item)=>item['id']==1);
+print(index); //1
+
+var index2 = [10, 20, 30].indexOf(20); //1
+var getValue = [10, 20, 30].contain(20); // true 
+
+memberList.remove(10);
+memberList.removeAt(1);
+memberList.removeWhere((e)=>e==50);
+```
+
+### List Loop
+```java
+memberList.forEach((item){
+	print(item) //{id:0, name:a.....}
+});
+
+var newList = memberList.map((item){
+	return item['name'];
+});
+print(newList); // (a, b, c)
+
+var fold = memberList.fold(0, (t, e){
+	return t+e['id']; // 0번째 부터 마지막까지 id 값을 더하기
+});
+print(fold);
+
+var reduce = [1,2,3,4,5].reduce((t,i)=> t+i);
+print(reduce);
+
+```
+
