@@ -144,7 +144,7 @@ Bicycle(this.cadence, this.speed, this.gear);
 	Bicycle(cadence:1,speed:3,gear:3); // speed 는 필수 요소
 	```
 
-### Getter 와 Setter
+## Getter 와 Setter
 - Java 에서는 필드(속성)변수들은 접근제한자와 관계없이 Getter 와 Setter 메소드를 임의르 만들어 사용할 수 있다.
 - Dart 에서는 private 로 선언된, 즉 변수 앞에 \_\ 가 붙여진 속성들에 한하여 Getter 와 Setter 메서드로의 접근을 허용한다.
 ```java
@@ -164,7 +164,7 @@ void speedUp(int i){
 }
 ```
 
-### List  선언
+## List  선언
 - Dart 의 리스트는 java의 DTO 데이터 타입이 정의되지 않더라도 선언이 가능하다.
 ```java
 
@@ -189,7 +189,7 @@ List memberList = [
 	
 ]
 ```
-### List 선언과 메소드
+## List 선언과 메소드
 - Dart 에서 List 선언은 [] 으로 하며 메소드의 기능들은 다음과 같다
 ```java
 print(tempList1.first); //a
@@ -203,7 +203,7 @@ tempList1.addAll(['e','e'])
 
 ```
 
-### List 탐색
+## List 탐색
 ```
 var item = memberList.firstWhere((item) =>item['id'] ==1 );
 var index = memberList.indexWhere((item)=>item['id']==1);
@@ -217,7 +217,7 @@ memberList.removeAt(1);
 memberList.removeWhere((e)=>e==50);
 ```
 
-### List Loop
+## List Loop
 ```java
 memberList.forEach((item){
 	print(item) //{id:0, name:a.....}
