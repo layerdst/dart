@@ -1,8 +1,6 @@
-# 변수와 타입
-
+## 변수와 타입
 
 ## 원시타입과 참조타입
-
 * JAVA 에서 데이터 타입은 **원시타입과 참조타입**으로 나뉘는데, Dart 는 모두 **참조타입**이다.
 
 * 다만, JAVA 에서는 참조타입에는 기본값인 null 을 선언할 수 있으나, Dart 도 null을 선언할수 있다. **다만  \” ? \” 와 같은 null 조건 연산자를 타입 뒤에 붙여 주어야 한다.**
@@ -95,6 +93,8 @@ print('${a+b} is Fifteen'); //십오 is Fifteen
 var _name = "이름"; //private 접근제한
 ```
 
+
+
 ## 생성자
 - 자바와 생성자를 만들수 있으나, 다양한 형태로 코드를 작성할 수 있다.
 ```java
@@ -120,31 +120,30 @@ Bicycle(int cadence, int speed, int gear)
 Bicycle(this.cadence, this.speed, this.gear);
 ```
 - 생성자 오버로딩
-	- named parameter 를 활용한 유연한 생성자를 만들 수 있다. 이는 자바의 생성자 오버로딩과 비슷하다.
-```java
-Bicycle(this.cadence, {this.speed=0, this.gear=0});
-// cadence 필수 요소, speed, gear 는 선택요소
-Bicycle(1,speed:3);
-Bicycle(1,gear:4)
+	- named parameter 를 활용한 유연한 인스턴스를 생성자를 통해 만들 수 있다. 이는 자바의 생성자 오버로딩과 비슷하다.
+	- Bicycle 생성자 중 cadence 는 필수 요소, speed와 gear 는 선택적으로 오버라이딩 할 수 있는 생성자는 아래와 같다.
+	- 생성자를 통한 인스턴스 생성시 클래스에 맞는 name parameter 를 이용하여 쉽게 생성이 가능하다.  
+	```Java
+	Bicycle(this.cadence, {this.speed=0, this.gear=0});
+	// cadence 필수 요소, speed, gear 는 선택요소
+	Bicycle(1,speed:3);
+	Bicycle(1,gear:4)
+	```
+	- 세 요소 전부 선택적으로 적용할 수 있는 생성자이다. 이때는 default 값을 모두 적용해줘야 한다.
+	```java
+	
+	Bicycle({this.cadence=0, this.speed=0, this.gear=0})
+	// 3가지 전부 선택요소
+	Bicycle(cadence:1,speed:3);
+	Bicycle(speed:1,gear:3);
+	Bicycle(cadence:1,speed:3,gear:3);
+	```
+	- required 를 선언하여 named parameter option 을 필수로 작성해야 하는 생성자를 만들수 있다.
+	```java
+	Bicycle({this.cadence=0, required this.speed, this.gear=0})
+	Bicycle(cadence:1,speed:3,gear:3); // speed 는 필수 요소
+	```
 
-
-Bicycle({this.cadence=0, this.speed=0, this.gear=0})
-// 3가지 전부 선택요소
-Bicycle(cadence:1,speed:3);
-Bicycle(speed:1,gear:3);
-Bicycle(cadence:1,speed:3,gear:3);
-
-Bicycle({this.cadence=0, this.speed=0, this.gear=0})
-// 3가지 전부 선택요소
-Bicycle(cadence:1,speed:3);
-Bicycle(speed:1,gear:3);
-Bicycle(cadence:1,speed:3,gear:3);
-```
-- required 를 선언하여 named parameter option 을 필수로 작성해야 하는 생성자를 만들수 있다.
-```java
-Bicycle({this.cadence=0, required this.speed, this.gear=0})
-Bicycle(cadence:1,speed:3,gear:3); // speed 는 필수 요소
-```
 ### Getter 와 Setter
 - Java 에서는 필드(속성)변수들은 접근제한자와 관계없이 Getter 와 Setter 메소드를 임의르 만들어 사용할 수 있다.
 - Dart 에서는 private 로 선언된, 즉 변수 앞에 \_\ 가 붙여진 속성들에 한하여 Getter 와 Setter 메서드로의 접근을 허용한다.
@@ -156,9 +155,7 @@ set speed(int speed) => _speed = speed;
 
 ```
 
-
 ## 메소드 오버라이딩
--------------
 - Dart 에서는  상속이나 implement 했을때 메소드를 오버라이딩 하는 어노테이션은 @override 로 표기한다.
 ```java
 @override
@@ -167,26 +164,13 @@ void speedUp(int i){
 }
 ```
 
-### List 선언과 메소드
-- Dart 에서 List 선언은 [] 으로 하며 메소드의 기능들은 다음과 같다
+### List  선언
+- Dart 의 리스트는 java의 DTO 데이터 타입이 정의되지 않더라도 선언이 가능하다.
 ```java
+
 List<String> tempList = List<String>(3);
 List<String> tempList1 = ['a', 'b','c'];
 
-print(tempList1.first); //a
-print(tempList1.isEmpty); //false
-print(tempList1.isNotEmpty); //true
-print(tempList1.length); //3
-print(tempList1.last); //c
-print(tempList1.reversed); //(c,b,a)
-tempList1.add('g');
-tempList1.addAll(['e','e'])
-
-```
-
-### List 탐색
-
-```
 List memberList = [
 	{
 	'id' : 0,
@@ -204,8 +188,23 @@ List memberList = [
 	},
 	
 ]
+```
+### List 선언과 메소드
+- Dart 에서 List 선언은 [] 으로 하며 메소드의 기능들은 다음과 같다
+```java
+print(tempList1.first); //a
+print(tempList1.isEmpty); //false
+print(tempList1.isNotEmpty); //true
+print(tempList1.length); //3
+print(tempList1.last); //c
+print(tempList1.reversed); //(c,b,a)
+tempList1.add('g');
+tempList1.addAll(['e','e'])
 
+```
 
+### List 탐색
+```
 var item = memberList.firstWhere((item) =>item['id'] ==1 );
 var index = memberList.indexWhere((item)=>item['id']==1);
 print(index); //1
@@ -236,6 +235,4 @@ print(fold);
 
 var reduce = [1,2,3,4,5].reduce((t,i)=> t+i);
 print(reduce);
-
 ```
-
