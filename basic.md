@@ -432,3 +432,40 @@ print(dic.keys.toList()); // 키를 전부다 출력
 print(dic.values.toList()); // value를 전부다 출력
 ```
 
+## Time 인스턴스
+```java
+  
+  DateTime now = DateTime.now();
+  print(now);
+  print(now.year);
+  print(now.month);
+  print(now.hour);
+  print(now.minute);
+  print(now.second);
+  print(now.millisecond);
+
+  Duration duration = Duration(seconds: 60);
+  print(duration); //0:01:00.000
+  print(duration.inDays); //0
+  print(duration.inHours); //0
+  print(duration.inMinutes); //1 
+  print(duration.inSeconds); //60
+  print(duration.inMilliseconds); //6000
+
+  DateTime specificDay= DateTime(
+    2017, //year
+      11, //month
+      23, //day
+      12  //hour
+  );
+  print(specificDay); //2017-11-23 12:00:00.00
+
+  final difference = now.difference(specificDay); 
+  print(difference); //42778:05:17 
+  print(difference.inDays); //1782 
+  print(difference.inHours); // 42778 
+  print(difference.inMinutes); // 2566685
+
+  print(now.isAfter(specificDay)); // true
+```
+
